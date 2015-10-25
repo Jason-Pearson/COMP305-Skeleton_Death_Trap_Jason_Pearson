@@ -131,7 +131,15 @@ public class PlayerController : MonoBehaviour {
             this._coinPickup.Play();
             Destroy(otherCollider.gameObject);
         }
+        if (otherCollider.gameObject.CompareTag("Bullet"))
+        {
+            //Decrease Life
+            Debug.Log("Hit");
+            this._playerHit.Play();
+            Destroy(otherCollider.gameObject);
+        }
     }
+
     void OnCollisionEnter2D(Collision2D otherCollider)
     {
         if (otherCollider.gameObject.CompareTag("Enemy"))
