@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour {
 	//PRIVATE INSTANCE VARIABLES
 	private AudioSource[] _audioSources;
     private AudioSource _playerHit;
+    private AudioSource _playerJump;
+    private AudioSource _coinPickup;
+
     //private PhysicsMaterial2D _material;
 	private Rigidbody2D _rigidbody2D;
 	private Transform _transform;
@@ -32,7 +35,7 @@ public class PlayerController : MonoBehaviour {
 
 	private float _movingValue = 0;
 	private bool _isFacingRight = true;
-    private bool _isGrounded = true;
+    private bool _isGrounded = false;
 
     // Use this for initialization
     void Start()
@@ -44,7 +47,8 @@ public class PlayerController : MonoBehaviour {
 
         this._audioSources = gameObject.GetComponents<AudioSource>();
         this._playerHit = this._audioSources[0];
-
+        this._playerJump = this._audioSources[1];
+        this._coinPickup = this._audioSources[2];
     }
 
     void FixedUpdate()
@@ -89,8 +93,11 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            // set our idle animation here
-            this._animator.SetInteger("AnimState", 0);
+            if (this._isGrounded)
+            {
+                // set our idle animation here
+                this._animator.SetInteger("AnimState", 0);
+            }
         }
 
         // check if player is jumping
@@ -100,8 +107,10 @@ public class PlayerController : MonoBehaviour {
             if (this._isGrounded)
             {
                 this._animator.SetInteger("AnimState", 2);
+                this._animator.speed = 0.8f;
                 if (absVelY < this.velocityRange.vMax)
                 {
+                    this._playerJump.Play();
                     forceY = this.jump;
                     this._isGrounded = false;
                 }
@@ -119,7 +128,7 @@ public class PlayerController : MonoBehaviour {
         {
             //Add Score +100
             Debug.Log("Coin");
-            otherCollider.gameObject.GetComponents<AudioSource>();
+            this._coinPickup.Play();
             Destroy(otherCollider.gameObject);
         }
     }
