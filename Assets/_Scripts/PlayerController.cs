@@ -21,11 +21,11 @@ public class PlayerController : MonoBehaviour {
 	public float speed = 50f;
 	public float jump = 500f;
 	public VelocityRange velocityRange = new VelocityRange (300f, 1000f); // reference of type VelocityRange, holds min and max velocity value
-	
+
 	//PRIVATE INSTANCE VARIABLES
 	private AudioSource[] _audioSources;
     private AudioSource _playerHit;
-
+    //private PhysicsMaterial2D _material;
 	private Rigidbody2D _rigidbody2D;
 	private Transform _transform;
 	private Animator _animator;
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour {
         this._rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         this._transform = gameObject.GetComponent<Transform>();
         this._animator = gameObject.GetComponent<Animator>();
-
+        //this._material = gameObject.GetComponent<BoxCollider2D>().sharedMaterial;
 
         this._audioSources = gameObject.GetComponents<AudioSource>();
         this._playerHit = this._audioSources[0];
@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         // check if player is jumping
-        if ((Input.GetKey("up") || Input.GetKey(KeyCode.W)))
+        if ((Input.GetKey("up") || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W)))
         {
             // check if player is grounded
             if (this._isGrounded)
@@ -128,6 +128,10 @@ public class PlayerController : MonoBehaviour {
         if (otherCollider.gameObject.CompareTag("Enemy"))
         {
             this._playerHit.Play();
+            /*if(this._isGrounded == false)
+            {
+                this._material.bounciness = 0.5f;
+            }*/
             //Enact Physics Material to Bounce off Enemy?
             //Life Decrease
         }
@@ -138,6 +142,7 @@ public class PlayerController : MonoBehaviour {
         if (otherCollider.gameObject.CompareTag("Platform"))
         {
             this._isGrounded = true;
+            //this._material.bounciness = 0;
         }
     }
 
