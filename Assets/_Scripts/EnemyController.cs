@@ -52,7 +52,6 @@ public class EnemyController : MonoBehaviour {
 
             if (this._isGroundAhead == false) // when the line cast is past the end position of the ground layer == false
             {
-                Debug.Log("Enemy Turn");
                 this._flip(); // flip enemy local scale (invert sprite and gameobject's direction)
             }
 

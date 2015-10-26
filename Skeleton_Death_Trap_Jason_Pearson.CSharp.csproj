@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_Scripts\DeathTrigger.cs" />
     <Compile Include="Assets\_Scripts\EnemyController.cs" />
     <Compile Include="Assets\_Scripts\PlatformFall.cs" />
     <Compile Include="Assets\_Scripts\PlayerController.cs" />
