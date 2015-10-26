@@ -133,6 +133,10 @@ public class PlayerController : MonoBehaviour {
     //Collision Handling
     void OnTriggerEnter2D(Collider2D otherCollider)
     {
+        if (otherCollider.gameObject.CompareTag("Goal"))
+        {
+            Application.LoadLevel("You Win");
+        }
         if (otherCollider.gameObject.CompareTag("Coin"))
         {
             this.score += 1000;

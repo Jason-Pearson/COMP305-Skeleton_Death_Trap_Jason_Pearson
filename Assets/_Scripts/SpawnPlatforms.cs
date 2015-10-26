@@ -9,10 +9,7 @@ public class SpawnPlatforms : MonoBehaviour {
     public float horizontalMax = 325f; // max 14 units to the right - this is adequate for long the player can jump forward and land on a platform
     public float verticalMin = -90f; // some for y axis - spawn above or below from one another between -6 to 6 y position
     public float verticalMax = 90f;
-
-    //public Transform flagSpawn;
-    //public GameObject flag;
-    
+    public GameObject EndPlatform;
 
     private Vector2 originPosition; // holds original position of ground
     //private Vector2 _flagPosition;
@@ -41,14 +38,18 @@ public class SpawnPlatforms : MonoBehaviour {
                 vertical = Random.Range(65f, verticalMax);
             }
 
-            Vector2 randomPosition = originPosition + new Vector2(Random.Range(horizontalMin, horizontalMax), vertical); // randomPosition incrementally equals originPosition + (between x = 6.5 to x = 14) (y = -6 to y = 6)
-            Instantiate(platform, randomPosition, Quaternion.identity); // instantiate Ground platform - offset from the position of the last platform
-            originPosition = randomPosition; // new origin position is the last instantiated to plateform - for new randomPosition in the next loop can increment an offset from the previous spawn position 
-
-            /*if (count == maxPlatforms-1)
+            if (i == maxPlatforms - 1)
             {
-                Instantiate(flag, _flagPosition, Quaternion.identity);
-            }*/
+                Vector2 randomPosition = originPosition + new Vector2(Random.Range(horizontalMin, horizontalMax), vertical); // randomPosition incrementally equals originPosition + (between x = 6.5 to x = 14) (y = -6 to y = 6)
+                Instantiate(EndPlatform, randomPosition, Quaternion.identity); // instantiate Ground platform - offset from the position of the last platform
+                originPosition = randomPosition; // new origin position is the last instantiated to plateform - for new randomPosition in the next loop can increment an offset from the previous spawn position 
+            }
+            else
+            {
+                Vector2 randomPosition = originPosition + new Vector2(Random.Range(horizontalMin, horizontalMax), vertical); // randomPosition incrementally equals originPosition + (between x = 6.5 to x = 14) (y = -6 to y = 6)
+                Instantiate(platform, randomPosition, Quaternion.identity); // instantiate Ground platform - offset from the position of the last platform
+                originPosition = randomPosition; // new origin position is the last instantiated to plateform - for new randomPosition in the next loop can increment an offset from the previous spawn position 
+            }
         }
     }
 }
