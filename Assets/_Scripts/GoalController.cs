@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
-public class GoalController : MonoBehaviour {
+public class GoalController : MonoBehaviour
+{
 
     public PlayerController playerControllerScript; // reference for the Player Controller script of type PlayerController class
     public int finalScore;
@@ -25,7 +27,9 @@ public class GoalController : MonoBehaviour {
     }
     void Update()
     {
-        this.finalScore = playerControllerScript.score;
-
+        if (playerControllerScript != null)
+        {
+            this.finalScore = playerControllerScript.score;
+        }
     }
 }

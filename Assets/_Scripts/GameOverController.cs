@@ -6,9 +6,10 @@ public class GameOverController : MonoBehaviour {
 
     public Text finalScoreLabel;
     public DeathTrigger deathTriggerScript; // reference for the Player Controller script of type PlayerController class
-
+    public GameObject goalController;
 	// Use this for initialization
 	void Awake () {
+        goalController = GameObject.FindWithTag("GoalController");
         GameObject deathTrigger = GameObject.FindWithTag("DeathTrigger"); //create reference for Player gameobject, and assign the variable via FindWithTag at start
         if (deathTrigger != null) // if the playerObject gameObject-reference is not null - assigning the reference via FindWithTag at first frame -
         {
@@ -34,6 +35,7 @@ public class GameOverController : MonoBehaviour {
     public void OnStartButtonClick()
     {
         Destroy(deathTriggerScript.gameObject);
+        Destroy(goalController);
         Application.LoadLevel("Menu");
     }
 }

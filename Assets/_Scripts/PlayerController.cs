@@ -43,7 +43,17 @@ public class PlayerController : MonoBehaviour {
 	private float _movingValue = 0;
 	private bool _isFacingRight = true;
     private bool _isGrounded = false;
-
+    
+    //Stop all sounds
+    private AudioSource[] allAudioSources;
+    void StopAllAudio()
+    {
+        allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+        foreach (AudioSource audioS in allAudioSources)
+        {
+            audioS.Stop();
+        }
+    }
     // Use this for initialization
     void Start()
     {
@@ -135,6 +145,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (otherCollider.gameObject.CompareTag("Goal"))
         {
+            StopAllAudio();
             Application.LoadLevel("You Win");
         }
         if (otherCollider.gameObject.CompareTag("Coin"))
