@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour {
     private AudioSource _playerHit;
     private AudioSource _playerJump;
     private AudioSource _coinPickup;
-    private AudioSource _playerFall;
 
     //private PhysicsMaterial2D _material;
 	private Rigidbody2D _rigidbody2D;
@@ -59,7 +58,6 @@ public class PlayerController : MonoBehaviour {
         this._playerHit = this._audioSources[0];
         this._playerJump = this._audioSources[1];
         this._coinPickup = this._audioSources[2];
-        this._playerFall = this._audioSources[3];
     }
 
     void FixedUpdate()

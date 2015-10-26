@@ -7,7 +7,6 @@ public class DeathTrigger : MonoBehaviour {
     private AudioSource[] audiosources;
     private AudioSource _playerFall;
     private AudioSource _background;
-
 	// Use this for initialization
 	void Start () {
         this.audiosources = gameObject.GetComponents<AudioSource>();
