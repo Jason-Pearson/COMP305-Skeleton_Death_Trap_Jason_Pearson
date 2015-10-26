@@ -70,6 +70,9 @@
   <ItemGroup>
     <Compile Include="Assets\_Scripts\DeathTrigger.cs" />
     <Compile Include="Assets\_Scripts\EnemyController.cs" />
+    <Compile Include="Assets\_Scripts\GameController.cs" />
+    <Compile Include="Assets\_Scripts\GameOverController.cs" />
+    <Compile Include="Assets\_Scripts\MenuController.cs" />
     <Compile Include="Assets\_Scripts\PlatformFall.cs" />
     <Compile Include="Assets\_Scripts\PlayerController.cs" />
     <Compile Include="Assets\_Scripts\ShotMover.cs" />
