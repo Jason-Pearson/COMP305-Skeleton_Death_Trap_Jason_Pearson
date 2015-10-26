@@ -72,6 +72,7 @@
     <Compile Include="Assets\_Scripts\EnemyController.cs" />
     <Compile Include="Assets\_Scripts\GameController.cs" />
     <Compile Include="Assets\_Scripts\GameOverController.cs" />
+    <Compile Include="Assets\_Scripts\HighScoreController.cs" />
     <Compile Include="Assets\_Scripts\MenuController.cs" />
     <Compile Include="Assets\_Scripts\PlatformFall.cs" />
     <Compile Include="Assets\_Scripts\PlayerController.cs" />

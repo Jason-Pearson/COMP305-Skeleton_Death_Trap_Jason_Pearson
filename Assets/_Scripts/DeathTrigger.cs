@@ -4,10 +4,16 @@ using System.Collections;
 public class DeathTrigger : MonoBehaviour {
    
     public PlayerController playerControllerScript; // reference for the Player Controller script of type PlayerController class
+    public int finalScore;
+
     private AudioSource[] audiosources;
     private AudioSource _playerFall;
     private AudioSource _background;
 	// Use this for initialization
+    void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
 	void Start () {
         this.audiosources = gameObject.GetComponents<AudioSource>();
         this._playerFall = this.audiosources[0];
@@ -26,17 +32,22 @@ public class DeathTrigger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if (playerControllerScript.hits < 1)
+        if (playerControllerScript != null)
         {
+	    if (playerControllerScript.hits == 0)
+        {
+            this.finalScore = playerControllerScript.score;
             this._background.Stop();
             this._playerFall.Play();
             Application.LoadLevel("GameOver");
+        }
         }
 	}
     void OnTriggerEnter2D(Collider2D other) // detect collider of another object
     {
         if (other.gameObject.CompareTag("Player")) // if that object has th tag "Player" -
         {
+            this.finalScore = playerControllerScript.score;
             this._background.Stop();
             this._playerFall.Play();
             Application.LoadLevel("GameOver");
